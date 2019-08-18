@@ -82,7 +82,7 @@ const Footer = () => (
             <h2 className="ftco-heading-2">Service Horaires</h2>
             <div className="opening-hours">
               <p>
-                De lundi a dimanche: <span className="mb-3">09:00 a 16:00</span>
+                De lundi a Samedi : <span className="mb-3">07:30 a 17:30</span>
               </p>
               <p>
                 Urgence Service : <span className="mb-3">+212 637-52-17-01</span>
@@ -101,8 +101,7 @@ const Footer = () => (
               Politique de confidentialité
               <br />
             </a>
-            Copyright &copy;
-            <script>document.write(new Date().getFullYear());</script> 2019 Tous
+            Copyright &copy;2019 Tous
             nous droits réservés{" "}
           </p>
         </div>

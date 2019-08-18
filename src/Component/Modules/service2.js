@@ -8,23 +8,28 @@ const Box2 = styled.div`
   margin-top: -100px;
 `;
 
+const ReadMore = ()=> <a href="!#" className="btn_2">  Lire plus  </a>
+
 
 const WhyUS = () => (
   <Box className="col-xl-4 col-md-4 align-self-center">
     <Box className="single_feature_text ">
       <h2>Pourquoi le laboratoire Fes ?</h2>
       <p>
-        Laboratoire d’analyses médicales, Laboratoire Fes est le leader parmis
-        plus de 50 laboratoires de biologie médicale a fes et dans le maroc,
-        depuis 1995. Le Laboratoire Fes assure toute la prise en charge du
-        patient, pour tous types d’analyses, avec ou sans RDV. Grâce à notre
-        grand equipe de spécialistes et notre professionnalisme nous vous
-        garantissons la livraison de la majorité de vos résultats d’analyses
-        médicales sous 24.
+      La mission de Laboratoire Fes est de contribuer pleinement à votre prise en charge, 
+      en proposant, au-delà des résultats d’examens, notre expertise en biologie médicale.
+      En complément de l’examen clinique, les résultats de biologie médicale apportent souvent un éclairage déterminant, 
+      pour la prise de décision des prescripteurs. Les biologistes médicaux de Laboratoire Fes participent, ainsi, 
+      activement à la prédiction, à la prévention et au dépistage des pathologies, ainsi qu’à leur traitement 
+      mais aussi au suivi de l’état de santé des patients.
+      Consciente de l’importance de la biologie médicale dans les soins prodigués à ses patients, 
+      l’équipe Laboratoire Fes est impliquée au quotidien dans une démarche d’excellence, 
+      se traduisant par notre engagement dans un processus qualité en vue du maintien de l’accréditation 
+      et sur le plan technique et médical et par la présence d’un réseau d’experts. Pour satisfaire à ces exigences, 
+      Laboratoire Fes ne cesse d’évoluer par l’utilisation de technologies innovantes 
+      et s’adapte en permanence aux nouvelles avancées scientifiques.
       </p>
-      <a href="!#" className="btn_2">
-        Lire plus
-      </a>
+      
     </Box>
   </Box>
 );
