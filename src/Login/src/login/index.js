@@ -17,21 +17,19 @@ const FormContainer = styled(Box)`
 `;
 
 export default () => (
-  <Route path="/member" render={()=>
     <Flex>
       <FormContainer>
         <AvatarContainer>
           <Avatar />
         </AvatarContainer>
         <Switch>
-        {/**page login */}
-        <Route exact path="/member" component={Login} />
-        {/**page signup */}
-        <Route path="/member/signup" component={Signup} />
-        {/**page forgetten */}
-        <Route path="/member/forgotpassword" component={Forgopassword} />
+          {/**page login */}
+          <Route exact path="/member" component={Login} />
+          {/**page signup */}
+          <Route path="/member/signup" component={Signup} />
+          {/**page forgetten */}
+          <Route path="/member/forgotpassword" component={Forgopassword} />
         </Switch>
       </FormContainer>
-    </Flex>}
-  />
+    </Flex>
 );
