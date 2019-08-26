@@ -1,5 +1,6 @@
 //import redux module
-import { combineReducers } from "redux";
+import thunk from "redux-thunk";
+import {applyMiddleware, combineReducers } from "redux";
 //declare our initial object
 const initialState = {
   login: {
@@ -50,10 +51,13 @@ const login = (state = { ...initialState.login }, action) => {
 const signup = (state = { ...initialState.signup }, action) => {
   switch (action.type) {
     case "TYPING_EMAIL":
+      state.email = action.value;
       return { ...state };
     case "TYPING_PASSWORD":
+      state.password = action.value;
       return { ...state };
     case "TYPING_PASSWORD_CONFIRMATION":
+      state.confirmPassword = action.value;
       return { ...state };
     default:
       return state;
@@ -68,11 +72,16 @@ const signup = (state = { ...initialState.signup }, action) => {
 const forgotPassword = (state = { ...initialState.forgotPassword }, action) => {
   switch (action.type) {
     case "TYPING_EMAIL":
+      state.Email = action.value;
       return { ...state };
     default:
       return state;
   }
 };
+
+//application of thunk middleware
+
+export const middleware = applyMiddleware(thunk);
 
 //lets combine All reducers 
 //in a big one 

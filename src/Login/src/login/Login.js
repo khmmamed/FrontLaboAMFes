@@ -4,7 +4,10 @@ import styled from "styled-components";
 import LoginButton from "./components/Buttons/Button";
 import UserNameInput from "./components/Inputs/Input";
 import KeyWordInput from "./components/Inputs/Input";
-import axios from "axios";
+
+//===> import dispatcher
+import { setUsername, setPassword, getUser } from "../login/store/actions"
+
 import Link from "./components/Links";
 
 //import redux module
@@ -24,7 +27,7 @@ const LoginForm = styled(Flex)`
   width: 100%;
 `;
 
-const Login = ({ userName, passWord, dispatch }) => (
+const Login = ({ userName, passWord, setUsername, setPassword, getUser}) => (
   <LoginForm>
     <InputContainer top={"50px"}>
       <UserNameInput
@@ -32,9 +35,7 @@ const Login = ({ userName, passWord, dispatch }) => (
         name="username"
         type="text"
         value={userName}
-        onChange={e =>
-          dispatch({ type: "TYPING_USERNAME", value: e.target.value })
-        }
+        onChange={e =>{ setUsername(e.target.value)} }
         material
       />
     </InputContainer>
@@ -44,9 +45,7 @@ const Login = ({ userName, passWord, dispatch }) => (
         name="password"
         type="password"
         value={passWord}
-        onChange={e =>
-          dispatch({ type: "TYPING_PASSWORD", value: e.target.value })
-        }
+        onChange={e => setPassword(e.target.value) }
         material
       />
     </InputContainer>
@@ -55,19 +54,7 @@ const Login = ({ userName, passWord, dispatch }) => (
         text={"Entrer"}
         bgColor={"#57b846"}
         borderColor={"#57b846"}
-        onClick={e => {
-          axios
-            .post("http://localhost:8000/login", {
-              username: userName,
-              password: passWord
-            })
-            .then(function(response) {
-              console.log(response.data.username);
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
-        }}
+        onClick={e => getUser(userName, passWord) }
         rounded
       />
     </SubmitButtonConatiner>
@@ -80,5 +67,6 @@ const mapStateToProps = state => ({
   userName: state.login.username,
   passWord: state.login.password
 });
+const mapDispatchToProps = { setUsername, setPassword, getUser };
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, { setUsername, setPassword, getUser })(Login);

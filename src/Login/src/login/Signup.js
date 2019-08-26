@@ -3,6 +3,7 @@ import EmailInput from "./components/Inputs/Input";
 import PasswordInput from "./components/Inputs/Input";
 import Flex, { Box } from "reactflexing";
 import styled from "styled-components";
+import axios from "axios";
 import Link from "./components/Links";
 import SignUpButton from "./components/Buttons/Button";
 
@@ -26,7 +27,7 @@ const Signup = ({ Email, password, confirmPassword, dispatch }) => (
           type="email" 
           value={Email} 
           placeholder="Email" 
-          onChange={e=>dispatch({type: "TYPING_EMAIL", value : e.target.Email})}
+          onChange={e=>dispatch({type: "TYPING_EMAIL", value : e.target.value})}
           material />
     </InputContainer>
     <InputContainer>
@@ -34,7 +35,7 @@ const Signup = ({ Email, password, confirmPassword, dispatch }) => (
         type="password"
         value={password}
         placeholder="password"
-        onChange={e=>dispatch({type: "TYPING_PASSWORD", value : e.target.password})}
+        onChange={e=>dispatch({type: "TYPING_PASSWORD", value : e.target.value})}
         material
       />
     </InputContainer>
@@ -43,7 +44,7 @@ const Signup = ({ Email, password, confirmPassword, dispatch }) => (
         type="password"
         value={confirmPassword}
         placeholder="Retaper votre Password"
-        onChange={e=>dispatch({type: "TYPING_PASSWORD_CONFIRMATION", value : e.target.confirmPassword})}
+        onChange={e=>dispatch({type: "TYPING_PASSWORD_CONFIRMATION", value : e.target.value})}
         material
       />
     </InputContainer>
@@ -52,6 +53,20 @@ const Signup = ({ Email, password, confirmPassword, dispatch }) => (
       text={"S'Enregister"}
       bgColor={"#d5281f"}
       borderColor={"#cb1414"}
+      onClick={e => {
+        axios
+          .post("http://localhost:8000/signup", {
+            email: Email,
+            password: password,
+            confirmPassword : confirmPassword
+          })
+          .then(function(response) {
+            console.log(response.data.username+" "+ response.data.message);
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }}
       rounded
     />
     <Link link="/member">Connecter</Link>

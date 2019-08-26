@@ -94,8 +94,10 @@ const Header = () => (
             <TeleHide> Bd Biranzarane, lot 8, Res Nour,Bureau Nº11 Atlas-Fes</TeleHide>
           </Box>
           <Box>
-            <Login height="25" width="40" />
-            <TeleHide> Se connecter</TeleHide>
+            <a href="./member">
+              <Login height="25" width="40" />
+              <TeleHide> Se connecter</TeleHide>
+            </a>
           </Box>
         </Flex1>
       </BoxHeader1>

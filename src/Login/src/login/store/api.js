@@ -1,8 +1,9 @@
-const Uri = { login: "/login", signup: "/signup" };
+/**import modules */
+
+
 
 /**
  * (dispatch)=>{
  *
  * }
- *
  */

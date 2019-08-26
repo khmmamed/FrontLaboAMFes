@@ -31,12 +31,12 @@ import Login from "./Login/src/login"
 
 import {Provider} from "react-redux"
 import { createStore } from "redux";
-import RootReducer from "./Login/src/login/store/reducers";
+import {RootReducer, middleware} from "./Login/src/login/store";
 
 //Styles importation
 import "./styles.css";
 
-const Store = createStore(RootReducer);
+const Store = createStore(RootReducer, middleware);
 
 console.log(Store.getState());
 
