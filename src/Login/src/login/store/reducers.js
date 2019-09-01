@@ -10,7 +10,9 @@ const initialState = {
   signup: {
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    message : "",
+    redirect : ""
   },
   forgotPassword: {
     email: ""
@@ -59,6 +61,16 @@ const signup = (state = { ...initialState.signup }, action) => {
     case "TYPING_PASSWORD_CONFIRMATION":
       state.confirmPassword = action.value;
       return { ...state };
+    case "ALERT_MESSAGE" :
+      state.message = action.message;
+      return {...state};
+    case "FECTCHED_DATA" :
+      state.message = "wait you will redirect soon..";
+      state.redirect = "/";
+      return {...state}
+    case "FETCHING_ERROR" :
+      state.message = "Please Re signedUp Something went wrong";
+      return {...state}
     default:
       return state;
   }
@@ -78,9 +90,7 @@ const forgotPassword = (state = { ...initialState.forgotPassword }, action) => {
       return state;
   }
 };
-
-//application of thunk middleware
-
+//middleware thunk 
 export const middleware = applyMiddleware(thunk);
 
 //lets combine All reducers 

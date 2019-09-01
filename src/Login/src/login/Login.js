@@ -6,7 +6,7 @@ import UserNameInput from "./components/Inputs/Input";
 import KeyWordInput from "./components/Inputs/Input";
 
 //===> import dispatcher
-import { setUsername, setPassword, getUser } from "../login/store/actions"
+import { loginUsername, loginPassword, logingetUser } from "../login/store/actions"
 
 import Link from "./components/Links";
 
@@ -27,7 +27,7 @@ const LoginForm = styled(Flex)`
   width: 100%;
 `;
 
-const Login = ({ userName, passWord, setUsername, setPassword, getUser}) => (
+const Login = ({ userName, passWord, loginUsername, loginPassword, logingetUser}) => (
   <LoginForm>
     <InputContainer top={"50px"}>
       <UserNameInput
@@ -35,7 +35,7 @@ const Login = ({ userName, passWord, setUsername, setPassword, getUser}) => (
         name="username"
         type="text"
         value={userName}
-        onChange={e =>{ setUsername(e.target.value)} }
+        onChange={e =>{ loginUsername(e.target.value)} }
         material
       />
     </InputContainer>
@@ -45,7 +45,7 @@ const Login = ({ userName, passWord, setUsername, setPassword, getUser}) => (
         name="password"
         type="password"
         value={passWord}
-        onChange={e => setPassword(e.target.value) }
+        onChange={e => loginPassword(e.target.value) }
         material
       />
     </InputContainer>
@@ -54,7 +54,7 @@ const Login = ({ userName, passWord, setUsername, setPassword, getUser}) => (
         text={"Entrer"}
         bgColor={"#57b846"}
         borderColor={"#57b846"}
-        onClick={e => getUser(userName, passWord) }
+        onClick={e => logingetUser(userName, passWord) }
         rounded
       />
     </SubmitButtonConatiner>
@@ -67,6 +67,6 @@ const mapStateToProps = state => ({
   userName: state.login.username,
   passWord: state.login.password
 });
-const mapDispatchToProps = { setUsername, setPassword, getUser };
+const mapDispatchToProps = { loginUsername, loginPassword, logingetUser };
 
-export default connect(mapStateToProps, { setUsername, setPassword, getUser })(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

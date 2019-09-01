@@ -13,53 +13,51 @@ import {Whatsapp} from "../../img";
 
 import "../../styles.css";
 
+const CarouselItem = ({items}) => (
+  items.map(item=>
+    <MDBCarouselItem itemId={item.id}>
+      <MDBView>
+        <img
+          className="d-block w-100"
+          src={item.image.link}
+          alt={item.image.alt}
+        />
+        <MDBMask overlay="black-strong" />
+      </MDBView>
+      <MDBCarouselCaption className="cap">
+        <h3 className="h">
+          {item.title}
+        </h3>
+        <p className="hh">{item.text}</p>
+        <button className="btnRdv"><Whatsapp height= {"30px"} width={"30px"}/>+212 637 521-701</button>
+      </MDBCarouselCaption>
+    </MDBCarouselItem>
+  )
+)
 
 const CarouselPage = () => {
   return (
     <MDBContainer>
       <MDBCarousel
         activeItem={1}
-        length={2}
+        length={5}
         showControls={true}
         showIndicators={true}
         className="z-depth-1"
       >
         <MDBCarouselInner>
-          <MDBCarouselItem itemId="1">
-            <MDBView>
-              <img
-                className="d-block w-100"
-                src="https://lvdneng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2019/01/14/node_520646/39968856/public/2019/01/14/B9718178063Z.1_20190114110725_000%2BG31COC4S3.1-0.jpg?itok=jQw--YTl"
-                alt="Second slide"
-              />
-              <MDBMask overlay="black-strong" />
-            </MDBView>
-            <MDBCarouselCaption className="cap">
-              <h3 className="h">
-                Laboratoire Fes, RECUEIL ET ANALYSE D'ÉCHANTILLONS BIOLOGIQUES
-              </h3>
-              <p className="hh">Laboratoire de biologie medicale</p>
-              <button className="btnRdv"><Whatsapp height= {"30px"} width={"30px"}/>+212 637 521-701</button>
-
-            </MDBCarouselCaption>
-          </MDBCarouselItem>
-          <MDBCarouselItem itemId="2">
-            <MDBView>
-              <img
-                className="d-block w-100"
-                src="http://www.laboratoire-vialatte.com/photos/_images/fond4-1/analyse-medicale-la-seyne-sur-mer-slide3.jpg"
-                alt="Third slide"
-              />
-              <MDBMask overlay="black-slight" />
-            </MDBView>
-            <MDBCarouselCaption className="cap">
-              <h3 className="h">
-                Laboratoire Fes, RECUEIL ET ANALYSE D'ÉCHANTILLONS BIOLOGIQUES
-              </h3>
-              <p className="hh">Laboratoire de biologie medicale</p>
-              <button className="btnRdv"><Whatsapp height= {"30px"} width={"30px"}/>+212 637 521-701</button>
-            </MDBCarouselCaption>
-          </MDBCarouselItem>
+          <CarouselItem items={[
+            { id : "1", image : {link : "./picture/Laboratoire_fes_1.jpg", alt: "Laboratoire Fes"}, 
+              title:"Laboratoire Fes, RECUEIL ET ANALYSE D'ÉCHANTILLONS BIOLOGIQUES", text : "Laboratoire de biologie medicale"},
+            { id : "2", image : {link : "./picture/Laboratoire_fes_2.jpg", alt: "Laboratoire Fes"}, 
+              title:"Laboratoire Fes, RECUEIL ET ANALYSE D'ÉCHANTILLONS BIOLOGIQUES", text : "Laboratoire de biologie medicale"},
+            { id : "3", image : {link : "./picture/Laboratoire_fes_3.jpg", alt: "Laboratoire Fes"}, 
+              title:"Laboratoire Fes, RECUEIL ET ANALYSE D'ÉCHANTILLONS BIOLOGIQUES", text : "Laboratoire de biologie medicale"},
+            { id : "4", image : {link : "./picture/Laboratoire_fes_4.jpg", alt: "Laboratoire Fes"}, 
+              title:"Laboratoire Fes, RECUEIL ET ANALYSE D'ÉCHANTILLONS BIOLOGIQUES", text : "Laboratoire de biologie medicale"},
+            { id : "5", image : {link : "./picture/Laboratoire_fes_5.jpg", alt: "Laboratoire Fes"}, 
+              title:"Laboratoire Fes, RECUEIL ET ANALYSE D'ÉCHANTILLONS BIOLOGIQUES", text : "Laboratoire de biologie medicale"}
+          ]} />
         </MDBCarouselInner>
       </MDBCarousel>
     </MDBContainer>

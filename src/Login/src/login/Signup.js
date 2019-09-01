@@ -6,6 +6,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Link from "./components/Links";
 import SignUpButton from "./components/Buttons/Button";
+import {signUpValidation, getSignupEmail, getSignupPassword, getSignupConfirmPassword} from "./store/actions" 
 
 //import redux module
 import { connect } from "react-redux";
@@ -20,14 +21,32 @@ const InputContainer = styled(Box)`
 const SignupForm = styled(Flex)`
   width: 100%;
 `;
-const Signup = ({ Email, password, confirmPassword, dispatch }) => (
-  <SignupForm>
+
+const Alert = ({message})=><div class="alert alert-danger" role="alert">{message}</div>
+
+const Signup = ({ 
+        Email, 
+        password, 
+        confirmPassword, 
+        message, 
+        redirect, 
+        signUpValidation, 
+        getSignupEmail, 
+        getSignupPassword, 
+        getSignupConfirmPassword  
+      }) => {
+    
+    const redirectTo = (link) =>{
+      window.location.replace(link)
+    } 
+
+    return  <SignupForm>
     <InputContainer>
       <EmailInput 
           type="email" 
           value={Email} 
           placeholder="Email" 
-          onChange={e=>dispatch({type: "TYPING_EMAIL", value : e.target.value})}
+          onChange={e=> getSignupEmail(e.target.value)}
           material />
     </InputContainer>
     <InputContainer>
@@ -35,7 +54,7 @@ const Signup = ({ Email, password, confirmPassword, dispatch }) => (
         type="password"
         value={password}
         placeholder="password"
-        onChange={e=>dispatch({type: "TYPING_PASSWORD", value : e.target.value})}
+        onChange={e=>getSignupPassword(e.target.value)}
         material
       />
     </InputContainer>
@@ -44,7 +63,7 @@ const Signup = ({ Email, password, confirmPassword, dispatch }) => (
         type="password"
         value={confirmPassword}
         placeholder="Retaper votre Password"
-        onChange={e=>dispatch({type: "TYPING_PASSWORD_CONFIRMATION", value : e.target.value})}
+        onChange={e=>getSignupConfirmPassword(e.target.value)}
         material
       />
     </InputContainer>
@@ -53,31 +72,24 @@ const Signup = ({ Email, password, confirmPassword, dispatch }) => (
       text={"S'Enregister"}
       bgColor={"#d5281f"}
       borderColor={"#cb1414"}
-      onClick={e => {
-        axios
-          .post("http://localhost:8000/signup", {
-            email: Email,
-            password: password,
-            confirmPassword : confirmPassword
-          })
-          .then(function(response) {
-            console.log(response.data.username+" "+ response.data.message);
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-      }}
+      onClick={e => signUpValidation(Email, password, confirmPassword)}
       rounded
     />
+    <Alert message={message}/>
+    {redirect !== "" ? redirectTo(redirect) : null}
     <Link link="/member">Connecter</Link>
     <Link link="/member/forgotpassword">Mot de Passe Oublie</Link>
   </SignupForm>
-);
+};
 
 //redux connection with component
 const mapToProps = state => ({
   Email: state.signup.email,
   password: state.signup.password,
-  confirmPassword: state.signup.confirmPassword
+  confirmPassword: state.signup.confirmPassword,
+  message : state.signup.message,
+  redirect : state.signup.redirect
 });
-export default connect(mapToProps)(Signup);
+
+const mapFuncToProps = {signUpValidation, getSignupEmail, getSignupPassword, getSignupConfirmPassword};
+export default connect(mapToProps, mapFuncToProps)(Signup);
